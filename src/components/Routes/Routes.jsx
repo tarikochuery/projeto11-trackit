@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes as Switch } from 'react-router-dom';
-import { UserContext, UserProvider } from '../../utils/Providers/UserProvider';
+import { UserContext } from '../../utils/Providers/UserProvider';
+import { Footer } from '../Footer';
 import { Header } from '../Header';
 import { Habits } from '../pages/Habits';
 import { Home } from '../pages/Home';
@@ -19,6 +20,7 @@ export const Routes = () => {
           <Route path='/habitos' element={<Habits />} />
         </Route>
       </Switch>
+      {currentUser?.email && <Footer />}
     </Router>
   );
 };
