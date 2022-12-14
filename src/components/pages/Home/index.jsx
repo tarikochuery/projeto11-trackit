@@ -13,8 +13,13 @@ export const Home = () => {
   const [loginInfo, setLoginInfo] = useState({ email: '', password: '' });
 
   const login = async (loginInfo) => {
-    const res = await axios.post(`${BASE_URL}/auth/login`, loginInfo);
-    console.log(res.data);
+    try {
+      const res = await axios.post(`${BASE_URL}/auth/login`, loginInfo);
+      console.log(res.data);
+    } catch (error) {
+      alert(error.response.data.message);
+    }
+
   };
 
   const handleSubmit = (e) => {
@@ -32,12 +37,14 @@ export const Home = () => {
           name='email'
           type='email'
           value={loginInfo.email}
+          required={true}
           onChange={(e) => setLoginInfo({ ...loginInfo, email: e.target.value })}
         />
         <Input
           name='senha'
           type='password'
           value={loginInfo.password}
+          required={true}
           onChange={(e) => setLoginInfo({ ...loginInfo, password: e.target.value })}
         />
         <Button size={BUTTON_L} type='submit' >

@@ -4,10 +4,11 @@ import { StyledForm } from "../../../styles/StyledForm";
 import { Input } from "../../atoms/Input";
 import { Button } from "../../atoms/Button";
 import { BUTTON_L } from "../../../styles/buttonSizes";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { BASE_URL } from "../../../utils/constants";
 import axios from "axios";
+
 
 export const Subscribe = () => {
   const [subscribeInfo, setSubscribeInfo] = useState({
@@ -17,10 +18,21 @@ export const Subscribe = () => {
     password: ''
   });
 
+  const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const subscribe = async (subscribeInfo) => {
-    console.log(subscribeInfo);
-    const res = await axios.post(`${BASE_URL}/auth/sign-up`, subscribeInfo);
-    console.log(res.data);
+    try {
+      setIsLoading(true);
+      const res = await axios.post(`${BASE_URL}/auth/sign-up`, subscribeInfo);
+      console.log(res.data);
+      navigate('/');
+    } catch (error) {
+      alert(error.response.data.message);
+    }
+
+    setIsLoading(false);
   };
 
   const handleSubmit = (e) => {
@@ -37,28 +49,36 @@ export const Subscribe = () => {
         <Input
           type="email"
           name='email'
+          isLoading={isLoading}
+          required={true}
           value={subscribeInfo.email}
           onChange={(e) => setSubscribeInfo({ ...subscribeInfo, email: e.target.value })}
         />
         <Input
           type="password"
           name='senha'
+          isLoading={isLoading}
+          required={true}
           value={subscribeInfo.password}
           onChange={(e) => setSubscribeInfo({ ...subscribeInfo, password: e.target.value })}
         />
         <Input
           type="text"
           name='nome'
+          required={true}
+          isLoading={isLoading}
           value={subscribeInfo.name}
           onChange={(e) => setSubscribeInfo({ ...subscribeInfo, name: e.target.value })}
         />
         <Input
           type="url"
           name='foto'
+          required={true}
+          isLoading={isLoading}
           value={subscribeInfo.image}
           onChange={(e) => setSubscribeInfo({ ...subscribeInfo, image: e.target.value })}
         />
-        <Button size={BUTTON_L} type='submit'>
+        <Button size={BUTTON_L} type='submit' isLoading={isLoading} >
           Cadastrar
         </Button>
       </StyledForm>
