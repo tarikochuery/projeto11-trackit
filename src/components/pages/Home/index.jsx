@@ -4,27 +4,22 @@ import { StyledForm } from "../../../styles/StyledForm";
 import { Input } from '../../atoms/Input';
 import { Button } from '../../atoms/Button';
 import { BUTTON_L } from '../../../styles/buttonSizes';
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import axios from "axios";
-import { BASE_URL } from "../../../utils/constants";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { UserContext } from "../../../utils/Providers/UserProvider";
 
 export const Home = () => {
+  const navigate = useNavigate();
+  const { login } = useContext(UserContext);
   const [loginInfo, setLoginInfo] = useState({ email: '', password: '' });
+  const [isLoading, setIsLoading] = useState(false);
 
-  const login = async (loginInfo) => {
-    try {
-      const res = await axios.post(`${BASE_URL}/auth/login`, loginInfo);
-      console.log(res.data);
-    } catch (error) {
-      alert(error.response.data.message);
-    }
-
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login(loginInfo);
+    setIsLoading(true);
+    const isLogged = await login(loginInfo);
+    setIsLoading(false);
+    isLogged && navigate('/habitos');
   };
 
   return (
@@ -39,6 +34,8 @@ export const Home = () => {
           value={loginInfo.email}
           required={true}
           onChange={(e) => setLoginInfo({ ...loginInfo, email: e.target.value })}
+          dataIdentifier='input-email'
+          isLoading={isLoading}
         />
         <Input
           name='senha'
@@ -46,11 +43,13 @@ export const Home = () => {
           value={loginInfo.password}
           required={true}
           onChange={(e) => setLoginInfo({ ...loginInfo, password: e.target.value })}
+          dataIdentifier="input-password"
+          isLoading={isLoading}
         />
-        <Button size={BUTTON_L} type='submit' >
+        <Button size={BUTTON_L} type='submit' dataIdentifier="login-btn" isLoading={isLoading} >
           Entrar
         </Button>
-        <Link to='/cadastro'>
+        <Link to='/cadastro' data-identifier="sign-up-action">
           <StyledLink>Não tem conta? Cadastre-se!</StyledLink>
         </Link>
       </StyledForm>
