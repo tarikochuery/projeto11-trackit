@@ -19,7 +19,10 @@ export const Home = () => {
     setIsLoading(true);
     const isLogged = await login(loginInfo);
     setIsLoading(false);
-    isLogged && navigate('/habitos');
+    console.log(isLogged);
+    if (isLogged) {
+      navigate('/habitos');
+    }
   };
 
   return (

@@ -9,19 +9,16 @@ import { ProtectedRoute } from './ProtectedRoute';
 
 export const Routes = () => {
   const { currentUser } = useContext(UserContext);
-
   return (
-    <UserProvider>
-      {currentUser.email && <Header />}
-      <Router>
-        <Switch>
-          <Route path='/' element={<Home />} />
-          <Route path='/cadastro' element={<Subscribe />} />
-          <Route element={<ProtectedRoute user={currentUser?.email} />} >
-            <Route path='/habitos' element={<Habits />} />
-          </Route>
-        </Switch>
-      </Router>
-    </UserProvider>
+    <Router>
+      {currentUser?.email && <Header />}
+      <Switch>
+        <Route path='/' element={<Home />} />
+        <Route path='/cadastro' element={<Subscribe />} />
+        <Route element={<ProtectedRoute user={currentUser?.email} />} >
+          <Route path='/habitos' element={<Habits />} />
+        </Route>
+      </Switch>
+    </Router>
   );
 };

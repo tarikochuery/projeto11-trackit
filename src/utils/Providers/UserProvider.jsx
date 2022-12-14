@@ -2,15 +2,7 @@ import axios from "axios";
 import { createContext, useState } from "react";
 import { BASE_URL } from "../constants";
 
-export const UserContext = createContext({
-  currentUser: {
-    name: '',
-    email: '',
-    image: '',
-    token: ''
-  },
-  login: ''
-});
+export const UserContext = createContext(null);
 
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState({

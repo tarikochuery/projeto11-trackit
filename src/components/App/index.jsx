@@ -1,11 +1,12 @@
+import { UserProvider } from "../../utils/Providers/UserProvider";
 import { Routes } from "../Routes/Routes";
 
 function App() {
 
   return (
-    <div>
+    <UserProvider>
       <Routes />
-    </div>
+    </UserProvider>
   );
 }
 
