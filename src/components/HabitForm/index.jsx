@@ -8,7 +8,7 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../utils/Providers/UserProvider";
 import axios from "axios";
 
-export const HabitForm = ({ closeForm }) => {
+export const HabitForm = ({ closeForm, setHasHabitsChanged }) => {
   const { currentUser: { token } } = useContext(UserContext);
   const [habitInfo, setHabitInfo] = useState({ name: '', days: [] });
 
@@ -35,6 +35,7 @@ export const HabitForm = ({ closeForm }) => {
 
       const res = await axios.post(`${BASE_URL}/habits`, habitInfo, config);
       closeForm();
+      setHasHabitsChanged(prev => !prev);
 
     } catch (error) {
       alert(error.response.data.message);

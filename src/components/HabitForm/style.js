@@ -16,7 +16,6 @@ export const WeekDaysListContainer = styled.div`
   gap: 0.4rem;
   align-items: center;
   margin-top: 0.8rem;
-  margin-bottom: 2.9rem;
 `;
 
 export const ButtonsContainer = styled.div`
@@ -24,6 +23,7 @@ export const ButtonsContainer = styled.div`
   align-items: center;
   gap: 2.3rem;
   align-self: flex-end;
+  margin-top: 2.9rem;
 
   & > p {
     color: #52B6FF;
