@@ -8,6 +8,8 @@ export const StyledHome = styled.div`
   gap: 2.8rem;
 
   min-height: 100vh;
+  background-color: #ffffff;
+  width: 100%;
 `;
 
 export const LogoContainer = styled.div`

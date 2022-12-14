@@ -19,10 +19,8 @@ export const Home = () => {
     setIsLoading(true);
     const isLogged = await login(loginInfo);
     setIsLoading(false);
-    console.log(isLogged);
-    if (isLogged) {
-      navigate('/habitos');
-    }
+
+    isLogged && navigate('/habitos');
   };
 
   return (
