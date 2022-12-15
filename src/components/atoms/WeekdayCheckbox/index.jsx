@@ -1,6 +1,6 @@
 import { StyledCheckbox } from "./style";
 
-export const Checkbox = ({ weekday, isSelected, onClick }) => {
+export const WeekdayCheckbox = ({ weekday, isSelected, onClick }) => {
   return (
     <StyledCheckbox isSelected={isSelected} onClick={onClick} >
       {weekday}

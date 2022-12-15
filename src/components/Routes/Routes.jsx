@@ -6,6 +6,7 @@ import { Header } from '../Header';
 import { Habits } from '../pages/Habits';
 import { Home } from '../pages/Home';
 import { Subscribe } from '../pages/Subscribe';
+import { Today } from '../pages/Today';
 import { ProtectedRoute } from './ProtectedRoute';
 
 export const Routes = () => {
@@ -18,6 +19,7 @@ export const Routes = () => {
         <Route path='/cadastro' element={<Subscribe />} />
         <Route element={<ProtectedRoute user={currentUser?.email} />} >
           <Route path='/habitos' element={<Habits />} />
+          <Route path='/hoje' element={<Today />} />
         </Route>
       </Switch>
       {currentUser?.email && <Footer />}

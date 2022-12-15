@@ -1,7 +1,7 @@
 import { ButtonsContainer, StyledHabitForm, WeekDaysListContainer } from "./style";
 import { Input } from '../atoms/Input';
 import { BASE_URL, WEEK_DAYS } from '../../utils/constants';
-import { Checkbox } from "../atoms/Checkbox";
+import { WeekdayCheckbox } from "../atoms/WeekdayCheckbox";
 import { Button } from "../atoms/Button";
 import { BUTTON_M } from "../../styles/buttonSizes";
 import { useContext, useState } from "react";
@@ -57,7 +57,7 @@ export const HabitForm = ({ closeForm, setHasHabitsChanged }) => {
       />
       <WeekDaysListContainer>
         {WEEK_DAYS.map((weekDay, idx) =>
-          <Checkbox
+          <WeekdayCheckbox
             weekday={weekDay}
             isSelected={habitInfo.days.includes(idx)}
             onClick={() => handleClickCheckbox(idx)}
