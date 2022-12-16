@@ -29,6 +29,7 @@ export const TodayHabit = ({ todayHabit: { id, name, done, currentSequence, high
         <p>Seu recorde: <span>{highestSequence}</span> dias</p>
       </TodayHabitInfoContainer>
       <Checkbox
+        style={{ cursor: 'pointer' }}
         onClick={handleCheckboxClick}
         width={'6.9rem'}
         height={'6.9rem'}

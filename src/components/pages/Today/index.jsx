@@ -5,6 +5,7 @@ import { StyledToday, TodayHabitsContainer, TodayHeaderContainer } from "./style
 
 export const Today = () => {
   const { todayHabits } = useContext(TodayHabitsContext);
+
   return (
     <StyledToday>
       <TodayHeaderContainer>

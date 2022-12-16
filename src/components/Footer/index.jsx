@@ -17,7 +17,9 @@ export const Footer = () => {
             path: { stroke: '#ffffff' },
           }}
           value={66}>
-          Hoje
+          <Link to='/hoje'>
+            <p>Hoje</p>
+          </Link>
         </CircularProgressbarWithChildren>
       </ProgressBarContainer>
       <Link to='/habitos'>

@@ -6,7 +6,8 @@ import { UserContext } from "./UserProvider";
 export const TodayHabitsContext = createContext({
   todayHabits: [],
   checkHabit: async () => { },
-  uncheckHabit: async () => { }
+  uncheckHabit: async () => { },
+  getTodayHabits: async () => { }
 });
 
 export const TodayHabitsProvider = ({ children }) => {
@@ -24,23 +25,17 @@ export const TodayHabitsProvider = ({ children }) => {
 
   useEffect(() => {
 
-    (async () => {
-      if (!token) {
-        return;
-      }
-      try {
-        const res = await axios.get(`${BASE_URL}/habits/today`, config);
-        setTodayHabits(res.data);
-      } catch (error) {
-        alert(error.response.data.message);
-      }
-    })();
+    if (!token) return;
 
-  }, [hasHabitsChanged]);
+    axios.get(`${BASE_URL}/habits/today`, config)
+      .then(res => setTodayHabits(res.data))
+      .catch(err => alert(err.response.data.message));
+
+  }, [token, hasHabitsChanged]);
 
   const checkHabit = async (id) => {
     try {
-      const res = axios.post(`${BASE_URL}/habits/${id}/check`, {}, config);
+      const res = await axios.post(`${BASE_URL}/habits/${id}/check`, {}, config);
       console.log(res.data);
       setHasHabitsChanged(!hasHabitsChanged);
     } catch (error) {
@@ -50,7 +45,7 @@ export const TodayHabitsProvider = ({ children }) => {
 
   const uncheckHabit = async (id) => {
     try {
-      const res = axios.post(`${BASE_URL}/habits/${id}/uncheck`, {}, config);
+      const res = await axios.post(`${BASE_URL}/habits/${id}/uncheck`, {}, config);
       console.log(res.data);
       setHasHabitsChanged(!hasHabitsChanged);
     } catch (error) {
