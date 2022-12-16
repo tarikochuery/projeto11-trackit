@@ -7,7 +7,6 @@ export const TodayHabitsContext = createContext({
   todayHabits: [],
   checkHabit: async () => { },
   uncheckHabit: async () => { },
-  getTodayHabits: async () => { }
 });
 
 export const TodayHabitsProvider = ({ children }) => {
@@ -53,7 +52,7 @@ export const TodayHabitsProvider = ({ children }) => {
     }
   };
 
-  //TODO: Melhorar requisição de conclusão de tarefa
+  //TODO: Montar lógica para quando um hábito do dia atual for criado, aparecer nos hábitos de hoje.
 
   return (
     <TodayHabitsContext.Provider value={{ todayHabits, checkHabit, uncheckHabit }}>
