@@ -7,9 +7,11 @@ import { BUTTON_M } from "../../styles/buttonSizes";
 import { useContext, useState } from "react";
 import { UserContext } from "../../utils/Providers/UserProvider";
 import axios from "axios";
+import { TodayHabitsContext } from "../../utils/Providers/TodayHabitsProvider";
 
 export const HabitForm = ({ closeForm, setHasHabitsChanged }) => {
   const { currentUser: { token } } = useContext(UserContext);
+  const { setHasTodayHabitsChanged } = useContext(TodayHabitsContext);
   const [habitInfo, setHabitInfo] = useState({ name: '', days: [] });
 
   const handleClickCheckbox = (weekDay) => {
@@ -36,6 +38,10 @@ export const HabitForm = ({ closeForm, setHasHabitsChanged }) => {
       const res = await axios.post(`${BASE_URL}/habits`, habitInfo, config);
       closeForm();
       setHasHabitsChanged(prev => !prev);
+      setHasTodayHabitsChanged(prev => {
+        console.log('Novo Hábito');
+        return !prev;
+      });
 
     } catch (error) {
       alert(error.response.data.message);

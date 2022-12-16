@@ -7,11 +7,12 @@ export const TodayHabitsContext = createContext({
   todayHabits: [],
   checkHabit: async () => { },
   uncheckHabit: async () => { },
+  setHasTodayHabitsChanged: (prev) => { }
 });
 
 export const TodayHabitsProvider = ({ children }) => {
   const [todayHabits, setTodayHabits] = useState([]);
-  const [hasHabitsChanged, setHasHabitsChanged] = useState(true);
+  const [hasHabitsChanged, setHasTodayHabitsChanged] = useState(true);
   const { currentUser: { token } } = useContext(UserContext);
 
   console.log(todayHabits);
@@ -36,7 +37,7 @@ export const TodayHabitsProvider = ({ children }) => {
     try {
       const res = await axios.post(`${BASE_URL}/habits/${id}/check`, {}, config);
       console.log(res.data);
-      setHasHabitsChanged(!hasHabitsChanged);
+      setHasTodayHabitsChanged(!hasHabitsChanged);
     } catch (error) {
       alert(error.response.data.message);
     }
@@ -46,16 +47,16 @@ export const TodayHabitsProvider = ({ children }) => {
     try {
       const res = await axios.post(`${BASE_URL}/habits/${id}/uncheck`, {}, config);
       console.log(res.data);
-      setHasHabitsChanged(!hasHabitsChanged);
+      setHasTodayHabitsChanged(!hasHabitsChanged);
     } catch (error) {
       alert(error.response.data.message);
     }
   };
 
-  //TODO: Montar lógica para quando um hábito do dia atual for criado, aparecer nos hábitos de hoje.
+  //TODO: Melhorar lógica para quando apenas um hábito do dia atual for criado, aparecer nos hábitos de hoje.
 
   return (
-    <TodayHabitsContext.Provider value={{ todayHabits, checkHabit, uncheckHabit }}>
+    <TodayHabitsContext.Provider value={{ todayHabits, checkHabit, uncheckHabit, setHasTodayHabitsChanged }}>
       {children}
     </TodayHabitsContext.Provider>
   );
