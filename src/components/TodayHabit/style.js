@@ -25,8 +25,12 @@ export const TodayHabitInfoContainer = styled.div`
     font-size: 1.3rem;
     color: #666666;
   }
+`;
 
-  & > p > span {
-    color: ${props => props.done ? '#8FC549' : '#666666'};
-  }
+export const StyledCurrentSequence = styled.span`
+  color: ${props => props.done ? '#8FC549' : '#666666'}
+`;
+
+export const StyledHighestSequence = styled.span`
+  color: ${props => props.isHighestSequence ? '#8FC549' : '#666666'};
 `;

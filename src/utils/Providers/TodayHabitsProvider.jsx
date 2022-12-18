@@ -26,7 +26,10 @@ export const TodayHabitsProvider = ({ children }) => {
     if (!token) return;
 
     axios.get(`${BASE_URL}/habits/today`, config)
-      .then(res => setTodayHabits(res.data))
+      .then(res => {
+        console.log(res.data);
+        setTodayHabits(res.data);
+      })
       .catch(err => alert(err.response.data.message));
 
   }, [token, hasHabitsChanged]);

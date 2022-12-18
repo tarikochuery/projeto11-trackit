@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { Checkbox } from "react-ionicons";
 import { TodayHabitsContext } from "../../utils/Providers/TodayHabitsProvider";
-import { StyledTodayHabit, TodayHabitInfoContainer } from "./style";
+import { StyledCurrentSequence, StyledHighestSequence, StyledTodayHabit, TodayHabitInfoContainer } from "./style";
 
 export const TodayHabit = ({ todayHabit: { id, name, done, currentSequence, highestSequence } }) => {
   const { checkHabit, uncheckHabit } = useContext(TodayHabitsContext);
@@ -25,8 +25,8 @@ export const TodayHabit = ({ todayHabit: { id, name, done, currentSequence, high
     <StyledTodayHabit>
       <TodayHabitInfoContainer done={done}>
         <h3>{name}</h3>
-        <p>Sequência atual: <span>{currentSequence}</span> dias</p>
-        <p>Seu recorde: <span>{highestSequence}</span> dias</p>
+        <p>Sequência atual: <StyledCurrentSequence done={done}>{currentSequence} dias</StyledCurrentSequence></p>
+        <p>Seu recorde: <StyledHighestSequence isHighestSequence={currentSequence > 0 && currentSequence === highestSequence}>{highestSequence} dias</StyledHighestSequence> </p>
       </TodayHabitInfoContainer>
       <Checkbox
         style={{ cursor: 'pointer' }}

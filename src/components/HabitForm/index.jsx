@@ -8,6 +8,7 @@ import { useContext, useState } from "react";
 import { UserContext } from "../../utils/Providers/UserProvider";
 import axios from "axios";
 import { TodayHabitsContext } from "../../utils/Providers/TodayHabitsProvider";
+import dayjs from "dayjs";
 
 export const HabitForm = ({ closeForm, setHasHabitsChanged }) => {
   const { currentUser: { token } } = useContext(UserContext);
@@ -36,12 +37,21 @@ export const HabitForm = ({ closeForm, setHasHabitsChanged }) => {
       };
 
       const res = await axios.post(`${BASE_URL}/habits`, habitInfo, config);
+      let isNewTodayHabit = false;
       closeForm();
       setHasHabitsChanged(prev => !prev);
-      setHasTodayHabitsChanged(prev => {
-        console.log('Novo Hábito');
-        return !prev;
+      habitInfo.days.forEach(day => {
+        if (day === dayjs().day()) {
+          isNewTodayHabit = true;
+          return;
+        }
+        return;
       });
+      if (isNewTodayHabit) {
+        console.log('novo hábito de hoje');
+        setHasTodayHabitsChanged(prev => !prev);
+      }
+
 
     } catch (error) {
       alert(error.response.data.message);

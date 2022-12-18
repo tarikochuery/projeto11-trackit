@@ -6,9 +6,11 @@ import { WeekDaysListContainer } from "../HabitForm/style";
 import axios from "axios";
 import { useContext } from "react";
 import { UserContext } from "../../utils/Providers/UserProvider";
+import { TodayHabitsContext } from "../../utils/Providers/TodayHabitsProvider";
 
 export const Habit = ({ habitInfo: { name, days, id }, setHasHabitsChanged }) => {
   const { currentUser: { token } } = useContext(UserContext);
+  const { setHasTodayHabitsChanged } = useContext(TodayHabitsContext);
   const deleteHabit = async () => {
     const config = {
       headers: {
@@ -18,7 +20,7 @@ export const Habit = ({ habitInfo: { name, days, id }, setHasHabitsChanged }) =>
     const res = await axios.delete(`${BASE_URL}/habits/${id}`, config);
     console.log(res);
     setHasHabitsChanged(prev => !prev);
-
+    setHasTodayHabitsChanged(prev => !prev);
   };
 
   const handleDeleteClick = () => {
