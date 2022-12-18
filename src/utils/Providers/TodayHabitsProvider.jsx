@@ -15,8 +15,6 @@ export const TodayHabitsProvider = ({ children }) => {
   const [hasHabitsChanged, setHasTodayHabitsChanged] = useState(true);
   const { currentUser: { token } } = useContext(UserContext);
 
-  console.log(todayHabits);
-
   const config = {
     headers: {
       'Authorization': `Bearer ${token}`
@@ -36,7 +34,6 @@ export const TodayHabitsProvider = ({ children }) => {
   const checkHabit = async (id) => {
     try {
       const res = await axios.post(`${BASE_URL}/habits/${id}/check`, {}, config);
-      console.log(res.data);
       setHasTodayHabitsChanged(!hasHabitsChanged);
     } catch (error) {
       alert(error.response.data.message);
@@ -46,7 +43,6 @@ export const TodayHabitsProvider = ({ children }) => {
   const uncheckHabit = async (id) => {
     try {
       const res = await axios.post(`${BASE_URL}/habits/${id}/uncheck`, {}, config);
-      console.log(res.data);
       setHasTodayHabitsChanged(!hasHabitsChanged);
     } catch (error) {
       alert(error.response.data.message);
