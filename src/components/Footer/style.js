@@ -15,7 +15,7 @@ export const StyledFooter = styled.footer`
 
   display: flex;
   align-items: center;
-  gap: 3.5rem;
+  justify-content: space-between;
 
   & a {
     text-decoration: none;
@@ -26,5 +26,8 @@ export const ProgressBarContainer = styled.div`
   width: 9.1rem;
   height: 9.1rem;
   color: #fff;
-  position: relative;
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
 `;

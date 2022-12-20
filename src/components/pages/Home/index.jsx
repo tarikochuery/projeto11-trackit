@@ -5,14 +5,22 @@ import { Input } from '../../atoms/Input';
 import { Button } from '../../atoms/Button';
 import { BUTTON_L } from '../../../styles/buttonSizes';
 import { Link, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../../utils/Providers/UserProvider";
 
 export const Home = () => {
   const navigate = useNavigate();
-  const { login } = useContext(UserContext);
+  const { login, currentUser } = useContext(UserContext);
   const [loginInfo, setLoginInfo] = useState({ email: '', password: '' });
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (currentUser.email) {
+      navigate('/hoje');
+    }
+  }, []);
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -22,8 +22,9 @@ export const Footer = () => {
       <ProgressBarContainer>
         <CircularProgressbarWithChildren
           background={true}
+          backgroundPadding={6}
           styles={{
-            background: { fill: '#52B6FF' },
+            background: { fill: '#52B6FF', padding: '10px' },
             trail: { stroke: '#52B6FF' },
             path: { stroke: '#ffffff' },
           }}
@@ -33,7 +34,7 @@ export const Footer = () => {
           </Link>
         </CircularProgressbarWithChildren>
       </ProgressBarContainer>
-      <Link to='/habitos'>
+      <Link to='/historico'>
         Histórico
       </Link>
     </StyledFooter>

@@ -4,6 +4,7 @@ import { UserContext } from '../../utils/Providers/UserProvider';
 import { Footer } from '../Footer';
 import { Header } from '../Header';
 import { Habits } from '../pages/Habits';
+import { History } from '../pages/History';
 import { Home } from '../pages/Home';
 import { Subscribe } from '../pages/Subscribe';
 import { Today } from '../pages/Today';
@@ -20,6 +21,7 @@ export const Routes = () => {
         <Route element={<ProtectedRoute user={currentUser?.email} />} >
           <Route path='/habitos' element={<Habits />} />
           <Route path='/hoje' element={<Today />} />
+          <Route path='historico' element={<History />} />
         </Route>
       </Switch>
       {currentUser?.email && <Footer />}

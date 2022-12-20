@@ -1,16 +1,17 @@
 import axios from "axios";
 import { createContext, useState } from "react";
 import { BASE_URL } from "../constants";
+import { usePersistedState } from "../hooks/usePersistedState";
 
 export const UserContext = createContext(null);
 
 export const UserProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState({
+  const [currentUser, setCurrentUser] = usePersistedState({
     name: '',
     email: '',
     image: '',
     token: ''
-  });
+  }, 'user');
 
   const login = async (loginInfo) => {
     try {
