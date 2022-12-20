@@ -29,14 +29,14 @@ export const Habit = ({ habitInfo: { name, days, id }, setHasHabitsChanged }) =>
   };
 
   return (
-    <StyledHabit>
+    <StyledHabit data-test='habit-container'>
       <HabitInfoContainer>
-        <p>{name}</p>
+        <p data-test='habit-name' >{name}</p>
         <WeekDaysListContainer>
-          {WEEK_DAYS.map((day, idx) => <WeekdayCheckbox key={idx} isSelected={days.includes(idx)} weekday={day} />)}
+          {WEEK_DAYS.map((day, idx) => <WeekdayCheckbox dataTest={days.includes(idx) ? 'habit-day' : ''} key={idx} isSelected={days.includes(idx)} weekday={day} />)}
         </WeekDaysListContainer>
       </HabitInfoContainer>
-      <TrashOutline onClick={handleDeleteClick} width={'1.3rem'} height={'1.5rem'} />
+      <TrashOutline data-test='habit-delete-btn' onClick={handleDeleteClick} width={'1.3rem'} height={'1.5rem'} />
     </StyledHabit>
   );
 };

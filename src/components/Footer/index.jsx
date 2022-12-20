@@ -15,25 +15,25 @@ export const Footer = () => {
   };
 
   return (
-    <StyledFooter>
-      <Link to='/habitos'>
+    <StyledFooter data-test='menu'>
+      <Link to='/habitos' data-test='habit-link'>
         Hábitos
       </Link>
-      <ProgressBarContainer>
-        <CircularProgressbarWithChildren
-          background={true}
-          backgroundPadding={6}
-          styles={{
-            background: { fill: '#52B6FF', padding: '10px' },
-            trail: { stroke: '#52B6FF' },
-            path: { stroke: '#ffffff' },
-          }}
-          value={getPercentHabitsDone()}>
-          <Link to='/hoje'>
+      <Link data-test='today-link' to='/hoje'>
+        <ProgressBarContainer>
+          <CircularProgressbarWithChildren
+            background={true}
+            backgroundPadding={6}
+            styles={{
+              background: { fill: '#52B6FF', padding: '10px' },
+              trail: { stroke: '#52B6FF' },
+              path: { stroke: '#ffffff' },
+            }}
+            value={getPercentHabitsDone()}>
             <p>Hoje</p>
-          </Link>
-        </CircularProgressbarWithChildren>
-      </ProgressBarContainer>
+          </CircularProgressbarWithChildren>
+        </ProgressBarContainer>
+      </Link>
       <Link to='/historico'>
         Histórico
       </Link>

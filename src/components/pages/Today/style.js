@@ -22,7 +22,7 @@ export const TodayHeaderContainer = styled.div`
   }
 
   & > p {
-    color: #BABABA;
+    color: ${props => props.isAnyHabitDone ? '#8FC549' : '#BABABA'};
     font-size: 1.8rem;
   }
 `;

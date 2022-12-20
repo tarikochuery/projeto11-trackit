@@ -32,7 +32,7 @@ export const Habits = () => {
     <StyledHabits>
       <HabitsHeader>
         <h2>Meus Hábitos</h2>
-        <Button size={BUTTON_S} onClick={() => setIsFormOpen(true)} >
+        <Button size={BUTTON_S} dataIdentifier='habit-create-btn' onClick={() => setIsFormOpen(true)} >
           +
         </Button>
       </HabitsHeader>

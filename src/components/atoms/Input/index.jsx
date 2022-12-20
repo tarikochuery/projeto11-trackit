@@ -5,7 +5,7 @@ export const Input = ({ name, value, onChange, isLoading = false, type = 'text',
     <StyledInputContainer isLoading={isLoading}>
       <label>
         <StyledInput
-          data-identifier={dataIdentifier}
+          data-test={dataIdentifier}
           required={required}
           type={type}
           disabled={isLoading}

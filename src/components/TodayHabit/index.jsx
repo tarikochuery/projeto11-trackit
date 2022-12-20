@@ -24,9 +24,9 @@ export const TodayHabit = ({ todayHabit: { id, name, done, currentSequence, high
   return (
     <StyledTodayHabit>
       <TodayHabitInfoContainer done={done}>
-        <h3>{name}</h3>
-        <p>Sequência atual: <StyledCurrentSequence done={done}>{currentSequence} dias</StyledCurrentSequence></p>
-        <p>Seu recorde: <StyledHighestSequence isHighestSequence={currentSequence > 0 && currentSequence === highestSequence}>{highestSequence} dias</StyledHighestSequence> </p>
+        <h3 data-test='today-habit-name' >{name}</h3>
+        <p data-test='today-habit-sequence' >Sequência atual: <StyledCurrentSequence done={done}>{currentSequence} dias</StyledCurrentSequence></p>
+        <p data-test='today-habit-record' >Seu recorde: <StyledHighestSequence isHighestSequence={currentSequence > 0 && currentSequence === highestSequence}>{highestSequence} dias</StyledHighestSequence> </p>
       </TodayHabitInfoContainer>
       <Checkbox
         style={{ cursor: 'pointer' }}
@@ -34,6 +34,7 @@ export const TodayHabit = ({ todayHabit: { id, name, done, currentSequence, high
         width={'6.9rem'}
         height={'6.9rem'}
         color={done ? '#8FC549' : '#EBEBEB'}
+        data-test='today-habit-check-btn'
       />
     </StyledTodayHabit>
   );

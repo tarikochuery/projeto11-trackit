@@ -8,7 +8,7 @@ export const Button = ({ size, type, children, isLoading = false, dataIdentifier
       size={size}
       isLoading={isLoading}
       type={type}
-      data-identifier={dataIdentifier}
+      data-test={dataIdentifier}
       onClick={onClick}
     >
       {isLoading ? <ThreeDots width={51} height={13} color='#ffffff' /> : children}

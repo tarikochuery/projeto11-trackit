@@ -53,7 +53,7 @@ export const Subscribe = () => {
           required={true}
           value={subscribeInfo.email}
           onChange={(e) => setSubscribeInfo({ ...subscribeInfo, email: e.target.value })}
-          dataIdentifier="input-email"
+          dataIdentifier="email-input"
         />
         <Input
           type="password"
@@ -62,7 +62,7 @@ export const Subscribe = () => {
           required={true}
           value={subscribeInfo.password}
           onChange={(e) => setSubscribeInfo({ ...subscribeInfo, password: e.target.value })}
-          dataIdentifier="input-password"
+          dataIdentifier="password-input"
         />
         <Input
           type="text"
@@ -71,7 +71,7 @@ export const Subscribe = () => {
           isLoading={isLoading}
           value={subscribeInfo.name}
           onChange={(e) => setSubscribeInfo({ ...subscribeInfo, name: e.target.value })}
-          dataIdentifier="input-name"
+          dataIdentifier="user-name-input"
         />
         <Input
           type="url"
@@ -80,13 +80,13 @@ export const Subscribe = () => {
           isLoading={isLoading}
           value={subscribeInfo.image}
           onChange={(e) => setSubscribeInfo({ ...subscribeInfo, image: e.target.value })}
-          dataIdentifier="input-photo"
+          dataIdentifier="user-image-input"
         />
-        <Button size={BUTTON_L} type='submit' isLoading={isLoading} >
+        <Button size={BUTTON_L} type='submit' dataIdentifier='signup-btn' isLoading={isLoading} >
           Cadastrar
         </Button>
       </StyledForm>
-      <Link data-identifier="back-to-login-action" to='/'>
+      <Link data-identifier="login-link" to='/'>
         <StyledLink>Já tem uma conta? Faça Login!</StyledLink>
       </Link>
     </StyledHome>

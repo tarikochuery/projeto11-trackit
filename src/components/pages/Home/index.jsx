@@ -20,8 +20,6 @@ export const Home = () => {
     }
   }, []);
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -43,7 +41,7 @@ export const Home = () => {
           value={loginInfo.email}
           required={true}
           onChange={(e) => setLoginInfo({ ...loginInfo, email: e.target.value })}
-          dataIdentifier='input-email'
+          dataIdentifier='email-input'
           isLoading={isLoading}
         />
         <Input
@@ -52,13 +50,13 @@ export const Home = () => {
           value={loginInfo.password}
           required={true}
           onChange={(e) => setLoginInfo({ ...loginInfo, password: e.target.value })}
-          dataIdentifier="input-password"
+          dataIdentifier="password-input"
           isLoading={isLoading}
         />
         <Button size={BUTTON_L} type='submit' dataIdentifier="login-btn" isLoading={isLoading} >
           Entrar
         </Button>
-        <Link to='/cadastro' data-identifier="sign-up-action">
+        <Link to='/cadastro' data-identifier="signup-link">
           <StyledLink>Não tem conta? Cadastre-se!</StyledLink>
         </Link>
       </StyledForm>

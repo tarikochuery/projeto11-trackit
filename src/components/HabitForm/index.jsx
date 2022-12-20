@@ -48,7 +48,6 @@ export const HabitForm = ({ closeForm, setHasHabitsChanged }) => {
         return;
       });
       if (isNewTodayHabit) {
-        console.log('novo hábito de hoje');
         setHasTodayHabitsChanged(prev => !prev);
       }
 
@@ -64,8 +63,9 @@ export const HabitForm = ({ closeForm, setHasHabitsChanged }) => {
   };
 
   return (
-    <StyledHabitForm onSubmit={handleSubmit}>
+    <StyledHabitForm data-test='habit-create-container' onSubmit={handleSubmit}>
       <Input
+        dataIdentifier='habit-name-input'
         name={'nome do hábito'}
         required={true}
         value={habitInfo.name}
@@ -74,6 +74,7 @@ export const HabitForm = ({ closeForm, setHasHabitsChanged }) => {
       <WeekDaysListContainer>
         {WEEK_DAYS.map((weekDay, idx) =>
           <WeekdayCheckbox
+            dataTest='habit-day'
             weekday={weekDay}
             isSelected={habitInfo.days.includes(idx)}
             onClick={() => handleClickCheckbox(idx)}
@@ -81,8 +82,8 @@ export const HabitForm = ({ closeForm, setHasHabitsChanged }) => {
           />)}
       </WeekDaysListContainer>
       <ButtonsContainer>
-        <p onClick={closeForm} >Cancelar</p>
-        <Button type='submit' size={BUTTON_M}>Salvar</Button>
+        <p data-test='habit-create-cancel-btn' onClick={closeForm} >Cancelar</p>
+        <Button type='submit' dataIdentifier='habit-create-save-btn' size={BUTTON_M}>Salvar</Button>
       </ButtonsContainer>
     </StyledHabitForm>
   );
